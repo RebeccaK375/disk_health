@@ -1,0 +1,16 @@
+test_disk: disk_test.o disk.o attributes.o program_controller.o
+	gcc -o test_disk disk_test.o disk.o attributes.o program_controller.o
+
+test_directory: directory_reader_test.o disk.o attributes.o program_controller.o 
+
+program_controller.o: program_controller.c program_controller.h
+	gcc -c program_controller.c
+
+disk_test.o: disk_test.c disk.h
+	gcc -c disk_test.c
+
+attributes.o: attributes.c attributes.h program_controller.h
+	gcc -c attributes.c
+
+disk.o: disk.c disk.h program_controller.h
+	gcc -c disk.c
